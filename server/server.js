@@ -56,6 +56,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017', {useUnifiedTopology: true})
         app.put('/:id', (req, res) => {
             const id = req.params.id;
             const newData = req.body
+            delete newData._id;
             bookingsCollection
                 .updateOne({_id: ObjectId(id)},
                             {$set: newData})
